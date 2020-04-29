@@ -1,7 +1,6 @@
 <template>
   <main>
-    <p>Manager!</p>
-    <button @click="addHero">Add hero</button>
+    <router-link to="/hero">Add hero</router-link>
   </main>
 </template>
 
@@ -12,11 +11,6 @@
       heroes: Object,
       maps: Object,
     },
-    methods: {
-      addHero() {
-        this.$emit('addHero', {id: 'test', name: 'Test'})
-      }
-    }
   }
 </script>
 

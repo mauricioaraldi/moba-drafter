@@ -1,6 +1,5 @@
 <template>
   <main>
-    <p>Drafter!</p>
     <ul>
       <li v-for="index in 3" :key="index">
         {{ sortedHeroes[index - 1] }}
@@ -14,14 +13,14 @@
 
   export default {
     name: 'Drafter',
-    data() {
-      return {
-        sortedHeroes: sortHeroes(this.heroes), 
-      }
-    },
     props: {
       heroes: Object,
       maps: Object,
+    },
+    data() {
+      return {
+        sortedHeroes: sortHeroes(this.heroes),
+      }
     },
   }
 </script>

@@ -2,8 +2,8 @@
   <header>
     <h1>Moba Drafter</h1>
     <nav>
-      <a href="/">Drafter</a>
-      <a href="/manager">Manager</a>
+      <router-link to="/">Drafter</router-link>
+      <router-link to="/manager">Manager</router-link>
       <button>Export data</button>
       <button>Import data</button>
     </nav>

@@ -2,7 +2,11 @@
   <div>
     <Header />
     <main>
-      <router-view :heroes="heroes" :maps="maps" @addHero="addHero"></router-view>
+      <router-view
+        :heroes="heroes"
+        :maps="maps"
+        @saveHero="saveHero"
+      />
     </main>
   </div>
 </template>
@@ -13,8 +17,9 @@
 
   export default {
     name: 'App',
-    data: () => {
+    data() {
       let data = {
+        currentId: 0,
         heroes: {},
         maps: {},
       };
@@ -27,34 +32,35 @@
         data = JSON.parse(savedData);
       }
 
-      data.heroes = {
-        test: {
-          id: 'test',
-          name: 'Test'
-        },
-        testa: {
-          id: 'testa',
-          name: 'TestA'
-        },
-        testb: {
-          id: 'testb',
-          name: 'TestB'
-        },
-      }
-
       return {
+        currentId: data.currentId,
         heroes: data.heroes,
         maps: data.maps,
       };
     },
-    methods: {
-      addHero(hero) {
-        console.log(hero);
-      }
-    },
     components: {
       Header
-    }
+    },
+    methods: {
+      saveData() {
+        const data = {
+          currnetId: this.currentId,
+          heroes: this.heroes,
+          maps: this.maps,
+        };
+
+        localStorage.setItem(constants.LOCALSTORAGE.DATA, JSON.stringify(data));
+      },
+      saveHero(hero) {
+        if (!hero.id) {
+          hero.id = ++this.currentId;
+        }
+
+        this.heroes[hero.id] = hero;
+
+        this.saveData();
+      }
+    },
   }
 </script>
 
