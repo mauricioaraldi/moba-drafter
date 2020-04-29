@@ -4,6 +4,8 @@
     <nav>
       <a href="/">Drafter</a>
       <a href="/manager">Manager</a>
+      <button>Export data</button>
+      <button>Import data</button>
     </nav>
   </header>
 </template>
@@ -16,14 +18,17 @@
 
 <style scoped>
   header {
-    left: 0;
-    position: fixed;
-    right: 0;
+    background-color: #FFFFFF;
+    padding: 16px;
     text-align: center;
-    top: 0;
   }
 
-  header > nav > a:first-child {
+  header > nav > a,
+  header > nav > button:nth-child(3) {
     margin-right: 16px;
+  }
+
+  h1 {
+    margin-top: 0;
   }
 </style>

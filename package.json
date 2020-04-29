@@ -25,11 +25,8 @@
     "url": "https://github.com/mauricioaraldi/moba-drafter/issues"
   },
   "dependencies": {
-    "@koa/router": "^8.0.8",
     "core-js": "^3.6.4",
-    "koa": "^2.11.0",
-    "koa-bodyparser": "^4.3.0",
-    "koa-static": "^5.0.0",
+    "normalize.css": "^8.0.1",
     "vue": "^2.6.11",
     "vue-router": "^3.1.6"
   },

@@ -16,4 +16,4 @@ new Vue({
       { path: '/manager', component: Manager }
     ]
   })
-}).$mount('#app')
+}).$mount('#app');
