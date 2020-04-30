@@ -1,14 +1,15 @@
 /**
- * Sort a heroes object by name, returning an array
+ * Sort a data object by name, returning an array
  * 
  * @author mauricio.araldi
  * @since 0.1.0
  * 
- * @param {heroes: Object} heroes Heroes by id
- * @return {Array} Heroes sorted by name
+ * @param {Object | Array} data Data by id
+ * @return {Array} Data sorted by name
  */
-export const sortHeroes = (heroes) => {
-  return Object.keys(heroes).map(id => heroes[id]).sort((a, b) => {
+export const sortData = (data) => {
+  const array = Array.isArray(data) ? data : Object.keys(data).map(id => data[id]);
+  return array.sort((a, b) => {
     if (a.name > b.name) {
       return 1;
     }

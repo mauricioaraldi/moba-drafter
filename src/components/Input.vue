@@ -1,7 +1,12 @@
 <template>
   <label>
-    <span>{{ label }}</span>
-    <input :placeholder="label" :type="type" v-on="inputListeners"/>
+    <span v-if="label">{{ label }}</span>
+    <input
+      :placeholder="label"
+      :type="type"
+      v-on="inputListeners"
+      :value="this.$attrs.value"
+    />
   </label>
 </template>
 
@@ -10,7 +15,6 @@
     name: 'Input',
     props: {
       label: String,
-      model: Object,
       type: String,
     },
     inheritAttrs: false,

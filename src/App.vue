@@ -24,10 +24,10 @@
         maps: {},
       };
 
-      const savedData = localStorage.getItem(constants.LOCALSTORAGE.DATA);
+      const savedData = localStorage.getItem(constants.LOCAL_STORAGE.DATA);
 
       if (!savedData) {
-        localStorage.setItem(constants.LOCALSTORAGE.DATA, JSON.stringify(data));
+        localStorage.setItem(constants.LOCAL_STORAGE.DATA, JSON.stringify(data));
       } else {
         data = JSON.parse(savedData);
       }
@@ -44,12 +44,12 @@
     methods: {
       saveData() {
         const data = {
-          currnetId: this.currentId,
+          currentId: this.currentId,
           heroes: this.heroes,
           maps: this.maps,
         };
 
-        localStorage.setItem(constants.LOCALSTORAGE.DATA, JSON.stringify(data));
+        localStorage.setItem(constants.LOCAL_STORAGE.DATA, JSON.stringify(data));
       },
       saveHero(hero) {
         if (!hero.id) {

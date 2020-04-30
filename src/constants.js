@@ -1,5 +1,5 @@
 export default {
-  LOCALSTORAGE: {
+  LOCAL_STORAGE: {
     DATA: 'mobadrafter_data',
   },
 };

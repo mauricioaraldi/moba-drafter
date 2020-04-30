@@ -15,7 +15,8 @@ new Vue({
     routes: [
       { path: '', component: Drafter },
       { path: '/manager', component: Manager },
-      { path: '/hero', component: Hero }
+      { path: '/manager/hero', component: Hero },
+      { path: '/manager/hero/:id', component: Hero },
     ]
   })
 }).$mount('#app');
