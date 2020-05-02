@@ -5,6 +5,7 @@ import App from './App.vue'
 import Manager from './pages/Manager.vue';
 import Drafter from './pages/Drafter.vue';
 import Hero from './pages/Hero.vue';
+import Map from './pages/Map.vue';
 
 Vue.use(VueRouter);
 
@@ -17,6 +18,8 @@ new Vue({
       { path: '/manager', component: Manager },
       { path: '/manager/hero', component: Hero },
       { path: '/manager/hero/:id', component: Hero },
+      { path: '/manager/map', component: Map },
+      { path: '/manager/map/:id', component: Map },
     ]
   })
 }).$mount('#app');

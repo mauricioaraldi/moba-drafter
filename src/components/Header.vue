@@ -12,19 +12,11 @@
 </template>
 
 <script>
-  import constants from '../constants';
-
   export default {
     name: 'Header',
     methods: {
       clearData() {
-        const confirmation = confirm('Are you sure that you want to clear all saved data?');
-
-        if (!confirmation) {
-          return;
-        }
-
-        localStorage.removeItem(constants.LOCAL_STORAGE.DATA);
+        this.$emit('clearData');
         this.$router.push('/');
       }
     }

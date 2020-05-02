@@ -2,6 +2,8 @@
   <label>
     <span v-if="label">{{ label }}</span>
     <input
+      :min="min"
+      :max="max"
       :placeholder="label"
       :type="type"
       v-on="inputListeners"
@@ -15,6 +17,9 @@
     name: 'Input',
     props: {
       label: String,
+      min: String,
+      max: String,
+      step: String,
       type: String,
     },
     inheritAttrs: false,

@@ -20,7 +20,7 @@
   export default {
     name: 'Select',
     props: {
-      filters: [Object, Array],
+      filterIds: [Number, Array],
       label: String,
       options: [Object, Array],
       placeholder: String,
@@ -29,13 +29,13 @@
     inheritAttrs: false,
     computed: {
       filteredOptions() {
-        const { filters, options, sort } = this;
+        const { filterIds, options, sort } = this;
         let optionsAsArray = Array.isArray(options) ? options : Object.values(options);
 
-        if (filters) {
-          const filtersAsArray = Array.isArray(filters) ? filters : Object.values(filters);
-          const filterIds = filtersAsArray.map(filter => filter && filter.id);
-          optionsAsArray = optionsAsArray.filter(option => filterIds.indexOf(option.id) === -1);
+        if (filterIds) {
+          const filterIdsArray = Array.isArray(filterIds) ? filterIds : [filterIds];
+          const filtersAsNumber = filterIdsArray.map(id => parseInt(id));
+          optionsAsArray = optionsAsArray.filter(option => filtersAsNumber.indexOf(option.id) === -1);
         }
 
         return sort !== false ? sortData(optionsAsArray) : optionsAsArray;
