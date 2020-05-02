@@ -8,6 +8,10 @@
  * @return {Array} Data sorted by name
  */
 export const sortData = (data) => {
+  if (!data) {
+    return;
+  }
+
   const array = Array.isArray(data) ? data : Object.keys(data).map(id => data[id]);
   return array.sort((a, b) => {
     if (a.name > b.name) {

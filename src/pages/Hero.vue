@@ -1,6 +1,11 @@
 <template>
   <main v-if="hero">
     <Input label="Name" v-model="hero.name" type="text"/>
+    <Select
+      :options="this.roles"
+      placeholder="Select a role"
+      v-model="hero.role"
+    />
     <Input
       label="Rating"
       max="10"
@@ -10,6 +15,7 @@
       v-model="hero.rating"
     />
     <RatingSetter v-model="hero.rating"/>
+
 
     <fieldset>
       <legend>Synergies</legend>
@@ -105,6 +111,7 @@
     props: {
       heroes: Object,
       maps: Object,
+      roles: Object,
     },
     data() {
       const id = this.$route.params.id;
@@ -180,6 +187,8 @@
           return alert('Hero name is required');
         }
 
+        console.log(this.hero);
+
         this.$emit('saveHero', this.hero);
         this.$router.push('/manager');
       }
@@ -189,7 +198,7 @@
 
 <style scoped>
   main > label:nth-child(2) {
-    margin-left: 16px;
+    margin: 0 16px;
   }
 
   label {

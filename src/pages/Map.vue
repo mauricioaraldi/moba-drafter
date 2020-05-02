@@ -20,6 +20,7 @@
     props: {
       heroes: Object,
       maps: Object,
+      roles: Object,
     },
     data() {
       const id = this.$route.params.id;

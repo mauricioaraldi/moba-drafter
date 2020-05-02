@@ -8,6 +8,7 @@
     props: {
       heroes: Object,
       maps: Object,
+      roles: Object,
     },
   }
 </script>

@@ -5,10 +5,13 @@
       <router-view
         @deleteHero="deleteHero"
         @deleteMap="deleteMap"
+        @deleteRole="deleteRole"
         :heroes="heroes"
         :maps="maps"
+        :roles="roles"
         @saveHero="saveHero"
         @saveMap="saveMap"
+        @saveRole="saveRole"
       />
     </main>
   </div>
@@ -25,6 +28,7 @@
         currentId: 0,
         heroes: {},
         maps: {},
+        roles: {},
       };
 
       const savedData = localStorage.getItem(LOCAL_STORAGE.DATA);
@@ -39,6 +43,7 @@
         currentId: data.currentId,
         heroes: data.heroes,
         maps: data.maps,
+        roles: data.roles,
       };
     },
     components: {
@@ -87,6 +92,23 @@
 
         this.saveData();
       },
+      deleteRole(role) {
+        if (!role || !role.id) {
+          return;
+        }
+
+        delete this.roles[role.id];
+
+        Object.keys(this.heroes).forEach(key => {
+          const curHero = this.heroes[key];
+
+          if (curHero.role === role.id) {
+            curHero.role = '';
+          }
+        });
+
+        this.saveData();
+      },
       saveData() {
         const data = {
           currentId: this.currentId,
@@ -119,6 +141,19 @@
         }
 
         this.maps[map.id] = map;
+
+        this.saveData();
+      },
+      saveRole(role) {
+        if (!role) {
+          return;
+        }
+
+        if (!role.id) {
+          role.id = ++this.currentId;
+        }
+
+        this.roles[role.id] = role;
 
         this.saveData();
       }

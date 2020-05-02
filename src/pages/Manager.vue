@@ -10,6 +10,15 @@
       </ul>
     </fieldset>
     <fieldset>
+      <legend>Roles</legend>
+      <router-link to="/manager/role">Add</router-link>
+      <ul>
+        <li v-for="role in sortedRoles" :key="role.id">
+          <router-link :to="`/manager/role/${role.id}`">{{ role.name }}</router-link>
+        </li>
+      </ul>
+    </fieldset>
+    <fieldset>
       <legend>Maps</legend>
       <router-link to="/manager/map">Add</router-link>
       <ul>
@@ -29,11 +38,13 @@
     props: {
       heroes: Object,
       maps: Object,
+      roles: Object,
     },
     data() {
       return {
         sortedHeroes: sortData(this.heroes),
         sortedMaps: sortData(this.maps),
+        sortedRoles: sortData(this.roles),
       }
     },
   }
