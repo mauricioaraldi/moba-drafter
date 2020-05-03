@@ -24,4 +24,4 @@ export const sortData = (data) => {
 
     return 0;
   });
-}
+};

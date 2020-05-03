@@ -109,6 +109,7 @@
   export default {
     name: 'Hero',
     props: {
+      configurations: Object,
       heroes: Object,
       maps: Object,
       roles: Object,

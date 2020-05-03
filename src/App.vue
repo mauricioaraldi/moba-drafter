@@ -3,12 +3,14 @@
     <Header @clearData="clearData"/>
     <main>
       <router-view
+        :configurations="configurations"
         @deleteHero="deleteHero"
         @deleteMap="deleteMap"
         @deleteRole="deleteRole"
         :heroes="heroes"
         :maps="maps"
         :roles="roles"
+        @saveConfigurations="saveConfigurations"
         @saveHero="saveHero"
         @saveMap="saveMap"
         @saveRole="saveRole"
@@ -25,7 +27,16 @@
     name: 'App',
     data() {
       let data = {
-        currentId: 0,
+        configurations: {
+          weights: {
+            rating: '10',
+            map: '1',
+            counter: '1',
+            countered: '1.5',
+            synergy: '1',
+          },
+        },
+        currentId: '0',
         heroes: {},
         maps: {},
         roles: {},
@@ -39,12 +50,7 @@
         data = JSON.parse(savedData);
       }
 
-      return {
-        currentId: data.currentId,
-        heroes: data.heroes,
-        maps: data.maps,
-        roles: data.roles,
-      };
+      return data;
     },
     components: {
       Header
@@ -109,11 +115,17 @@
 
         this.saveData();
       },
+      saveConfigurations(configurations) {
+        this.configurations = configurations;
+        this.saveData();
+      },
       saveData() {
         const data = {
+          configurations: this.configurations,
           currentId: this.currentId,
           heroes: this.heroes,
           maps: this.maps,
+          roles: this.roles,
         };
 
         localStorage.setItem(LOCAL_STORAGE.DATA, JSON.stringify(data));
@@ -124,7 +136,11 @@
         }
 
         if (!hero.id) {
-          hero.id = ++this.currentId;
+          let currentId = parseInt(this.currentId);
+
+          hero.id = ++currentId;
+
+          this.currentId = currentId;
         }
 
         this.heroes[hero.id] = hero;
@@ -137,7 +153,11 @@
         }
 
         if (!map.id) {
-          map.id = ++this.currentId;
+          let currentId = parseInt(this.currentId);
+
+          map.id = ++currentId;
+
+          this.currentId = currentId;
         }
 
         this.maps[map.id] = map;
@@ -150,15 +170,19 @@
         }
 
         if (!role.id) {
-          role.id = ++this.currentId;
+          let currentId = parseInt(this.currentId);
+
+          role.id = ++currentId;
+
+          this.currentId = currentId;
         }
 
         this.roles[role.id] = role;
 
         this.saveData();
-      }
+      },
     },
-  }
+  };
 </script>
 
 <style scoped>  

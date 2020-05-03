@@ -4,9 +4,7 @@
     <nav>
       <router-link to="/" active-class="active" exact>Drafter</router-link>
       <router-link to="/manager" active-class="active">Manager</router-link>
-      <button>Export data</button>
-      <button>Import data</button>
-      <button @click="clearData">Clear data</button>
+      <router-link to="/configuration" active-class="active">Configuration</router-link>
     </nav>
   </header>
 </template>
@@ -14,13 +12,7 @@
 <script>
   export default {
     name: 'Header',
-    methods: {
-      clearData() {
-        this.$emit('clearData');
-        this.$router.push('/');
-      }
-    }
-  }
+  };
 </script>
 
 <style scoped>

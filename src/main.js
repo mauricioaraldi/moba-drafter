@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router';
 
 import App from './App.vue'
+import Configuration from './pages/Configuration.vue';
 import Drafter from './pages/Drafter.vue';
 import Hero from './pages/Hero.vue';
 import Manager from './pages/Manager.vue';
@@ -16,6 +17,7 @@ new Vue({
     mode: 'history',
     routes: [
       { path: '', component: Drafter },
+      { path: '/configuration', component: Configuration },
       { path: '/manager', component: Manager },
       { path: '/manager/hero', component: Hero },
       { path: '/manager/hero/:id', component: Hero },

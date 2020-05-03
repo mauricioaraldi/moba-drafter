@@ -5,6 +5,7 @@
       :min="min"
       :max="max"
       :placeholder="label"
+      :step="step"
       :type="type"
       v-on="inputListeners"
       :value="this.$attrs.value"
@@ -32,7 +33,7 @@
         );
       },
     },
-  }
+  };
 </script>
 
 <style scoped>

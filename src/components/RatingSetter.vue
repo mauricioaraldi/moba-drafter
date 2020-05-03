@@ -17,9 +17,9 @@
       set(level) {
         const rating = LEVEL[level];
         this.$emit('input', rating);
-      }
-    }
-  }
+      },
+    },
+  };
 </script>
 
 <style scoped>
