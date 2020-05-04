@@ -5,15 +5,15 @@
       :options="maps"
       placeholder="Select a map"
       v-model="map"
-      @change="updateHeroPool"
     />
 
     <fieldset>
       <legend>Bans</legend>
       <Select
-        :options="heroPool"
+        :filterIds="getFilterIds()"
+        :options="heroes"
         placeholder="Select a hero"
-        v-model="heroBans"
+        v-model="banId"
       />
       <button @click="ban()">Ban</button>
     </fieldset>
@@ -21,9 +21,10 @@
     <fieldset>
       <legend>Ally picks</legend>
       <Select
-        :options="heroPool"
+        :filterIds="getFilterIds()"
+        :options="heroes"
         placeholder="Select an ally pick"
-        v-model="allyPicks"
+        v-model="allyId"
       />
       <button @click="allyPick()">Pick</button>
     </fieldset>
@@ -31,17 +32,18 @@
     <fieldset>
       <legend>Enemy picks</legend>
       <Select
-        :options="heroPool"
+        :filterIds="getFilterIds()"
+        :options="heroes"
         placeholder="Select an enemy pick"
-        v-model="enemyPicks"
+        v-model="enemyId"
       />
       <button @click="enemyPick()">Pick</button>
     </fieldset>
 
     <p>Hero pool</p>
     <ul>
-      <li v-for="hero in heroPool" :key="hero.id">
-        {{ hero.name }} {{ calculateScore(hero) }}
+      <li v-for="hero in heroPoolSortedByScore" :key="hero.id">
+        {{ hero.name }} [{{ hero.score }}]
       </li>
     </ul>
   </main>
@@ -63,27 +65,81 @@
     },
     data() {
       return {
+        allyId: '',
+        allyPicks: {},
+        banId: '',
+        bans: {},
+        enemyId: '',
+        enemyPicks: {},
         map: '',
-        heroBans: '',
-        allyPicks: '',
-        enemyPicks: '',
-        heroPool: Object.assign({}, this.heroes),
       };
+    },
+    computed: {
+      heroPoolSortedByScore() {
+        const filterIds = this.getFilterIds();
+
+        return Object.values(this.heroes)
+          .filter(hero => filterIds.indexOf(hero.id) === -1)
+          .map(hero => this.calculateScore(hero))
+          .sort((a, b) => b.score - a.score);
+      },
     },
     methods: {
       allyPick() {
+        const hero = this.heroes[this.allyId];
+
+        this.allyPicks[hero.id] = hero;
+        this.allyId = '';
       },
       ban() {
+        const hero = this.heroes[this.banId];
+
+        this.bans[hero.id] = hero;
+        this.banId = '';
       },
       calculateScore(hero) {
-        console.log(hero);
+        const allies = Object.values(this.allyPicks);
+        const enemies = Object.values(this.enemyPicks);
+
+        hero.score = parseInt(hero.rating) * this.configurations.weights.rating;
+
+        if (this.map && hero.maps[this.map]) {
+          hero.score += parseInt(hero.maps[this.map]) * this.configurations.weights.map;
+        }
+
+        allies.forEach(ally => {
+          if (hero.synergies[ally.id]) {
+            hero.score += parseInt(hero.synergies[ally.id]) * this.configurations.weights.synergy;
+          }
+        });
+
+        enemies.forEach(enemy => {
+          if (hero.counters[enemy.id]) {
+            hero.score += parseInt(hero.counters[enemy.id]) * this.configurations.weights.counters;
+          }
+
+          if (enemy.counters[hero.id]) {
+            hero.score -= parseInt(enemy.counters[hero.id]) * this.configurations.weights.countered;
+          }
+        });
+
+        return hero;
       },
       enemyPick() {
+        const hero = this.heroes[this.enemyId];
+
+        this.enemyPicks[hero.id] = hero;
+        this.enemyId = '';
       },
-      updateHeroPool() {
+      getFilterIds() {
+        return [
+          ...Object.keys(this.allyPicks),
+          ...Object.keys(this.enemyPicks),
+          ...Object.keys(this.bans),
+        ];
       }
-    }
-  }
+    },
+  };
 </script>
 
 <style scoped>
