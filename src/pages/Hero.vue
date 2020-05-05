@@ -147,6 +147,7 @@
       },
       addSynergy() {
         this.hero.synergies[this.addSynergyValue] = '10';
+        this.heroes[this.addSynergyValue].synergies[this.hero.id] = '10';
         this.addSynergyValue = '';
       },
       deleteHero() {
