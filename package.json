@@ -2,13 +2,15 @@
   "name": "moba-drafter",
   "version": "0.1.0",
   "description": "A draft helper for MOBAs",
-  "homepage": "https://github.com/mauricioaraldi/moba-drafter.git",
+  "homepage": "https://mauricioaraldi.github.io/moba-drafter",
   "private": true,
   "main": "server.js",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "build": "cross-env NODE_ENV=production vue-cli-service build",
+    "deploy": "gh-pages -d dist",
+    "lint": "vue-cli-service lint",
+    "predeploy": "npm run build",
+    "serve": "vue-cli-service serve"
   },
   "author": "Mauricio Araldi",
   "keywords": [
@@ -35,8 +37,10 @@
     "@vue/cli-plugin-eslint": "~4.3.0",
     "@vue/cli-service": "~4.3.0",
     "babel-eslint": "^10.1.0",
+    "cross-env": "^7.0.2",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "gh-pages": "^2.2.0",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
