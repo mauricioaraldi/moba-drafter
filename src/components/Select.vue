@@ -24,12 +24,12 @@
       label: String,
       options: [Object, Array],
       placeholder: String,
-      sort: Boolean,
+      preserveOrder: Boolean,
     },
     inheritAttrs: false,
     computed: {
       filteredOptions() {
-        const { filterIds, options, sort } = this;
+        const { filterIds, options, preserveOrder } = this;
         let optionsAsArray = Array.isArray(options) ? options : Object.values(options);
 
         if (filterIds) {
@@ -38,7 +38,7 @@
           optionsAsArray = optionsAsArray.filter(option => filtersAsNumber.indexOf(option.id) === -1);
         }
 
-        return sort !== false ? sortData(optionsAsArray) : optionsAsArray;
+        return preserveOrder ? optionsAsArray : sortData(optionsAsArray);
       },
       inputListeners() {
         return Object.assign(
