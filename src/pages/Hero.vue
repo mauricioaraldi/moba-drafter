@@ -138,16 +138,16 @@
     },
     methods: {
       addCounter() {
-        this.hero.counters[this.addCounterValue] = '10';
+        this.$set(this.hero.counters, this.addCounterValue, '10');
         this.addCounterValue = '';
       },
       addMap() {
-        this.hero.maps[this.addMapValue] = '10';
+        this.$set(this.hero.maps, this.addMapValue, '10');
         this.addMapValue = '';
       },
       addSynergy() {
-        this.hero.synergies[this.addSynergyValue] = '10';
-        this.heroes[this.addSynergyValue].synergies[this.hero.id] = '10';
+        this.$set(this.hero.synergies, this.addSynergyValue, '10');
+        this.$set(this.heroes[this.addSynergyValue].synergies, this.hero.id, '10');
         this.addSynergyValue = '';
       },
       deleteHero() {
@@ -165,7 +165,7 @@
           return;
         }
 
-        delete this.hero.counters[key];
+        this.$delete(this.hero.counters, key);
         this.$forceUpdate();
       },
       removeMap(key) {
@@ -173,7 +173,7 @@
           return;
         }
 
-        delete this.hero.maps[key];
+        this.$delete(this.hero.maps, key);
         this.$forceUpdate();
       },
       removeSynergy(key) {
@@ -181,15 +181,13 @@
           return;
         }
 
-        delete this.hero.synergies[key];
+        this.$delete(this.hero.synergies, key);
         this.$forceUpdate();
       },
       save() {
         if (!this.hero.name) {
           return alert('Hero name is required');
         }
-
-        console.log(this.hero);
 
         this.$emit('saveHero', this.hero);
         this.$router.push('/manager');

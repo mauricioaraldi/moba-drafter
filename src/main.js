@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router';
+import VueGtag from "vue-gtag";
 
 import App from './App.vue'
 import Configuration from './pages/Configuration.vue';
@@ -10,6 +11,10 @@ import Map from './pages/Map.vue';
 import Role from './pages/Role.vue';
 
 Vue.use(VueRouter);
+
+Vue.use(VueGtag, {
+  config: { id: 'UA-165996759-1' },
+});
 
 new Vue({
   render: h => h(App),
