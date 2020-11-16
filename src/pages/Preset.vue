@@ -33,7 +33,7 @@
 
         if (!presets[preset]) {
           alert('Preset data not found');
-          return
+          return;
         }
 
         this.$emit('setPreset', presets[preset]);
