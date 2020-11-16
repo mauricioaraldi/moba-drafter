@@ -8,6 +8,7 @@ import Drafter from './pages/Drafter.vue';
 import Hero from './pages/Hero.vue';
 import Manager from './pages/Manager.vue';
 import Map from './pages/Map.vue';
+import Preset from './pages/Preset.vue';
 import Role from './pages/Role.vue';
 
 Vue.use(VueRouter);
@@ -30,6 +31,7 @@ new Vue({
       { path: '/manager/map/:id', component: Map },
       { path: '/manager/role', component: Role },
       { path: '/manager/role/:id', component: Role },
+      { path: '/preset', component: Preset },
     ]
   })
 }).$mount('#app');
