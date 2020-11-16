@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import hots from '../../presets/hots.json'
+  import hots from '../../presets/hots.json';
 
   export default {
     name: 'Preset',
@@ -24,25 +24,18 @@
         const confirmation = confirm('Doing this will erase all the current data. Are you sure?');
 
         if (!confirmation) {
-          return
+          return;
         }
 
-        let presetData;
+        let presets = {
+          hots,
+        };
 
-        switch (preset) {
-          case 'hots':
-            presetData = hots
-            break;
-
-          default:
-            break;
+        if (!presets[preset]) {
+          alert('Preset data not found');
         }
 
-        if (!presetData) {
-          alert('Preset data not found')
-        }
-
-        this.$emit('setPreset', presetData);
+        this.$emit('setPreset', presets[preset]);
         this.$router.push('/');
       },
     },
