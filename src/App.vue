@@ -14,6 +14,7 @@
         @saveHero="saveHero"
         @saveMap="saveMap"
         @saveRole="saveRole"
+        @setPreset="setPreset"
       />
     </main>
   </div>
@@ -181,6 +182,12 @@
 
         this.saveData();
       },
+      setPreset(preset) {
+        this.configurations = preset.configurations
+        this.heroes = preset.heroes
+        this.maps = preset.maps
+        this.roles = preset.roles
+      }
     },
   };
 </script>

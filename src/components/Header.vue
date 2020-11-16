@@ -5,6 +5,7 @@
       <router-link to="/" active-class="active" exact>Drafter</router-link>
       <router-link to="/manager" active-class="active">Manager</router-link>
       <router-link to="/configuration" active-class="active">Configuration</router-link>
+      <router-link to="/preset" active-class="active">Presets</router-link>
     </nav>
   </header>
 </template>
