@@ -38,7 +38,7 @@
   export default {
     name: 'Manager',
     props: {
-      configurations: Object,
+      settings: Object,
       heroes: Object,
       maps: Object,
       roles: Object,
@@ -53,5 +53,5 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 </style>

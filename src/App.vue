@@ -3,14 +3,14 @@
     <Header @clearData="clearData"/>
     <main>
       <router-view
-        :configurations="configurations"
+        :settings="settings"
         @deleteHero="deleteHero"
         @deleteMap="deleteMap"
         @deleteRole="deleteRole"
         :heroes="heroes"
         :maps="maps"
         :roles="roles"
-        @saveConfigurations="saveConfigurations"
+        @saveSettings="saveSettings"
         @saveHero="saveHero"
         @saveMap="saveMap"
         @saveRole="saveRole"
@@ -28,7 +28,7 @@
     name: 'App',
     data() {
       let data = {
-        configurations: {
+        settings: {
           weights: {
             rating: '10',
             map: '1',
@@ -66,7 +66,7 @@
 
         localStorage.removeItem(LOCAL_STORAGE.DATA);
         this.currentId = 0;
-        this.$router.push('/');
+        this.$router.push('/preset');
       },
       deleteHero(hero) {
         if (!hero || !hero.id) {
@@ -116,13 +116,13 @@
 
         this.saveData();
       },
-      saveConfigurations(configurations) {
-        this.configurations = configurations;
+      saveSettings(settings) {
+        this.settings = settings;
         this.saveData();
       },
       saveData() {
         const data = {
-          configurations: this.configurations,
+          settings: this.settings,
           currentId: this.currentId,
           heroes: this.heroes,
           maps: this.maps,
@@ -183,7 +183,7 @@
         this.saveData();
       },
       setPreset(preset) {
-        this.configurations = preset.configurations
+        this.settings = preset.settings
         this.heroes = preset.heroes
         this.maps = preset.maps
         this.roles = preset.roles
@@ -195,14 +195,34 @@
 <style scoped>  
 </style>
 
-<style>
+<style lang="scss">
   @import '~normalize.css';
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
 
   body { 
-    background: #F7F7F7;
+    background: $primary-color;
+    font-family: 'Montserrat', sans-serif;
   }
 
   main {
-    padding: 16px;
+    padding: 8px;
+  }
+
+  fieldset {
+    background-color: $gray-color;
+    border: none;
+    padding: 0;
+  }
+
+  fieldset > legend {
+    background: $primary-gray-gradient;
+    color: $light-color;
+    padding: 4px;
+    text-shadow: 1px 1px 1px $dark-color;
+    width: 100%;
+  }
+
+  fieldset > form {
+    padding: 8px;
   }
 </style>

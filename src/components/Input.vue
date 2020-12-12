@@ -1,7 +1,8 @@
 <template>
-  <label>
-    <span v-if="label">{{ label }}</span>
+  <label :class="variant">
+    <span v-if="label" :class="variant">{{ label }}</span>
     <input
+      :class="variant"
       :min="min"
       :max="max"
       :placeholder="label"
@@ -17,6 +18,7 @@
   export default {
     name: 'Input',
     props: {
+      variant: String,
       label: String,
       min: String,
       max: String,
@@ -36,12 +38,22 @@
   };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   label {
     display: block;
   }
 
   span {
     display: block;
+    margin-bottom: 4px;
+  }
+
+  input {
+    box-sizing: border-box;
+    width: 100%;
+
+      &.small {
+        width: 50px;
+      }
   }
 </style>

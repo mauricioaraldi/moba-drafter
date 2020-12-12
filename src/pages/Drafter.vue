@@ -5,6 +5,7 @@
       :options="maps"
       placeholder="Select a map"
       v-model="map"
+      v-if="maps.length"
     />
 
     <fieldset>
@@ -73,7 +74,7 @@
   export default {
     name: 'Drafter',
     props: {
-      configurations: Object,
+      settings: Object,
       heroes: Object,
       maps: Object,
       roles: Object,
@@ -128,7 +129,7 @@
       calculateScore(hero) {
         const allies = Object.values(this.allyPicks);
         const enemies = Object.values(this.enemyPicks);
-        const { weights } = this.configurations;
+        const { weights } = this.settings;
 
         hero.score = 0;
 

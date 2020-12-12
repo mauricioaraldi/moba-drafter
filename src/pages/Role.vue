@@ -17,7 +17,7 @@
   export default {
     name: 'Role',
     props: {
-      configurations: Object,
+      settings: Object,
       heroes: Object,
       maps: Object,
       roles: Object,

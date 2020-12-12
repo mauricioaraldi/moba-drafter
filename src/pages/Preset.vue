@@ -2,7 +2,9 @@
   <main>
     <fieldset>
       <legend>Choose a preset</legend>
-      <button @click="choosePreset('hots')">Heroes of the Storm</button>
+      <div>
+        <button @click="choosePreset('hots')">Heroes of the Storm</button>
+      </div>
     </fieldset>
   </main>
 </template>
@@ -13,7 +15,7 @@
   export default {
     name: 'Preset',
     props: {
-      configurations: Object,
+      settings: Object,
       heroes: Object,
       maps: Object,
       roles: Object,
@@ -42,3 +44,14 @@
     },
   };
 </script>
+
+<style lang="scss" scoped>
+  fieldset {
+    padding: 8px 0;
+  }
+  div {
+    align-content: center;
+    display: flex;
+    justify-content: center;
+  }
+</style>

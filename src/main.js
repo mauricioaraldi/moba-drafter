@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 import VueGtag from "vue-gtag";
 
 import App from './App.vue'
-import Configuration from './pages/Configuration.vue';
+import Settings from './pages/Settings.vue';
 import Drafter from './pages/Drafter.vue';
 import Hero from './pages/Hero.vue';
 import Manager from './pages/Manager.vue';
@@ -22,8 +22,8 @@ new Vue({
   router: new VueRouter({
     mode: 'history',
     routes: [
-      { path: '', component: Drafter },
-      { path: '/configuration', component: Configuration },
+      { path: '/drafter', component: Drafter },
+      { path: '/settings', component: Settings },
       { path: '/manager', component: Manager },
       { path: '/manager/hero', component: Hero },
       { path: '/manager/hero/:id', component: Hero },

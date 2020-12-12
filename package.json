@@ -1,6 +1,6 @@
 {
   "name": "moba-drafter",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A draft helper for MOBAs",
   "homepage": "https://mauricioaraldi.github.io/moba-drafter",
   "private": true,
@@ -41,7 +41,10 @@
     "cross-env": "^7.0.2",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "fibers": "^5.0.0",
     "gh-pages": "^2.2.0",
+    "node-sass": "^5.0.0",
+    "sass-loader": "^10.1.0",
     "vue-template-compiler": "^2.6.12"
   },
   "eslintConfig": {

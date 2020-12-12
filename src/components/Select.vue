@@ -2,7 +2,7 @@
   <label>
     <span v-if="label">{{ label }}</span>
     <select :value="this.$attrs.value" v-on="inputListeners">
-      <option disabled value="">{{ placeholder }}</option>
+      <option value="">{{ placeholder }}</option>
       <option
         :key="option.id"
         v-for="option in this.filteredOptions"
